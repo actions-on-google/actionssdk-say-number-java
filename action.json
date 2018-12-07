@@ -1,0 +1,21 @@
+{
+  "actions": [
+    {
+      "description": "Default Welcome Intent",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "conversation_1"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN"
+      }
+    }
+  ],
+  "conversations": {
+    "conversation_1": {
+      "name": "conversation_1",
+      "url": "YOUR_ENDPOINT_URL",
+      "fulfillmentApiVersion": 2
+    }
+  }
+}
