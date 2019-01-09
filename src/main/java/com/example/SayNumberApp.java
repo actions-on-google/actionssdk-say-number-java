@@ -16,37 +16,22 @@
 
 package com.example;
 
-import com.google.actions.api.*;
+import com.google.actions.api.ActionRequest;
+import com.google.actions.api.ActionResponse;
+import com.google.actions.api.ActionsSdkApp;
+import com.google.actions.api.ForIntent;
 import com.google.actions.api.response.ResponseBuilder;
-
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
-
-import com.google.api.services.actions_fulfillment.v2.model.Argument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 // Libraries for Google Assistant SDK
-import com.google.api.services.actions_fulfillment.v2.model.BasicCard;
-import com.google.api.services.actions_fulfillment.v2.model.Button;
-import com.google.api.services.actions_fulfillment.v2.model.CarouselBrowse;
-import com.google.api.services.actions_fulfillment.v2.model.CarouselBrowseItem;
-import com.google.api.services.actions_fulfillment.v2.model.CarouselSelectCarouselItem;
-import com.google.api.services.actions_fulfillment.v2.model.Image;
-import com.google.api.services.actions_fulfillment.v2.model.ListSelectListItem;
-import com.google.api.services.actions_fulfillment.v2.model.MediaObject;
-import com.google.api.services.actions_fulfillment.v2.model.MediaResponse;
-import com.google.api.services.actions_fulfillment.v2.model.OpenUrlAction;
-import com.google.api.services.actions_fulfillment.v2.model.OptionInfo;
-import com.google.api.services.actions_fulfillment.v2.model.SimpleResponse;
-import com.google.api.services.actions_fulfillment.v2.model.TableCard;
-import com.google.api.services.actions_fulfillment.v2.model.TableCardCell;
-import com.google.api.services.actions_fulfillment.v2.model.TableCardColumnProperties;
-import com.google.api.services.actions_fulfillment.v2.model.TableCardRow;
 
 public class SayNumberApp extends ActionsSdkApp {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SayNumberApp.class);
+  private static final Logger LOGGER = LoggerFactory
+      .getLogger(SayNumberApp.class);
 
   // Note: Do not store any state as an instance variable.
   // It is ok to have final variables where the variable is assigned a value in
@@ -59,7 +44,7 @@ public class SayNumberApp extends ActionsSdkApp {
     LOGGER.info("Welcome intent start.");
     ResponseBuilder responseBuilder = getResponseBuilder(request);
     ResourceBundle rb = ResourceBundle.getBundle("resources",
-            request.getLocale());
+        request.getLocale());
     responseBuilder.add(rb.getString("welcome"));
 
     LOGGER.info("Welcome intent end.");
@@ -73,11 +58,12 @@ public class SayNumberApp extends ActionsSdkApp {
     ResourceBundle rb = ResourceBundle.getBundle("resources");
 
     String userNumber = request.getArgument("text").getTextValue();
+    String response;
     if (userNumber.equals("bye")) {
-      String response = MessageFormat.format(rb.getString("bye"));
+      response = rb.getString("bye");
       responseBuilder.add(response).endConversation();
     } else {
-      String response = MessageFormat.format(rb.getString("sayOrdinal"), userNumber);
+      response = MessageFormat.format(rb.getString("sayOrdinal"), userNumber);
       responseBuilder.add(response);
     }
     LOGGER.info("Number intent end.");
