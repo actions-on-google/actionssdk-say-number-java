@@ -6,3 +6,4 @@ gradlew
 gradlew.bat
 out/
 .DS_Store
+creds.data
